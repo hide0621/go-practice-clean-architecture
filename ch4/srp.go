@@ -26,20 +26,24 @@ func funcB2() {
 	fmt.Println("Function B2 is called.")
 }
 
-func Process(btn BtnInfo, productType string) {
+func ProcessA(btn BtnInfo) {
 	if btn.X.IsPress {
 		if btn.Y.IsPress {
-			if productType == "A" {
-				funcA1()
-			} else if productType == "B" {
-				funcB1()
-			}
+			funcA1()
 		} else {
-			if productType == "A" {
-				funcA2()
-			} else if productType == "B" {
-				funcB2()
-			}
+			funcA2()
+		}
+	} else {
+		fmt.Println("X button is not pressed.")
+	}
+}
+
+func ProcessB(btn BtnInfo) {
+	if btn.X.IsPress {
+		if btn.Y.IsPress {
+			funcB1()
+		} else {
+			funcB2()
 		}
 	} else {
 		fmt.Println("X button is not pressed.")

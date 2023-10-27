@@ -7,9 +7,9 @@ import (
 func main() {
 
 	buttonInfo1 := ch4.BtnInfo{X: ch4.ButtonState{IsPress: true}, Y: ch4.ButtonState{IsPress: true}}
-	ch4.Process(buttonInfo1, "A")
+	ch4.ProcessA(buttonInfo1)
 
 	buttonInfo2 := ch4.BtnInfo{X: ch4.ButtonState{IsPress: false}, Y: ch4.ButtonState{IsPress: false}}
-	ch4.Process(buttonInfo2, "B")
+	ch4.ProcessB(buttonInfo2)
 
 }
