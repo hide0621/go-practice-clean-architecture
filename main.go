@@ -21,7 +21,14 @@ func main() {
 		HasResMail:  false,
 		HasFwMail:   false,
 	}
-	result := ch5.Validate(mail)
+
+	validators := []ch5.Validator{
+		ch5.SharedValidator{},
+		ch5.ResValidator{},
+		ch5.FwValidator{},
+	}
+
+	result := ch5.Validate(mail, validators)
 	fmt.Println(result)
 
 }
