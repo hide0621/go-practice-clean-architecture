@@ -20,3 +20,17 @@ func Sub1() {
 	result := Validate(mail, validators)
 	fmt.Println(result)
 }
+
+func Sub2() {
+
+	spm := NewSharedPreferenceManager()
+
+	spm.SetBoolean("res", true)
+	spm.SetBoolean("sound", false)
+	spm.SetBoolean("vibration", true)
+
+	fmt.Println("IsResPrefix: ", spm.IsResPrefix())
+	fmt.Println("IsEnableNotifySound:", spm.IsEnableNotifySound())
+	fmt.Println("IsEnableNotifyVib:", spm.IsEnableNotifyVib())
+
+}
