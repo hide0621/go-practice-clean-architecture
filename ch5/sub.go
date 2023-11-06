@@ -25,12 +25,16 @@ func Sub2() {
 
 	spm := NewSharedPreferenceManager()
 
-	spm.SetBoolean("res", true)
-	spm.SetBoolean("sound", false)
-	spm.SetBoolean("vibration", true)
+	resProvider := ResProvider{value: true}
+	soundProvider := SoundProvider{value: false}
+	vibrationProvider := VibrationProvider{value: true}
 
-	fmt.Println("IsResPrefix: ", spm.IsResPrefix())
-	fmt.Println("IsEnableNotifySound:", spm.IsEnableNotifySound())
-	fmt.Println("IsEnableNotifyVib:", spm.IsEnableNotifyVib())
+	spm.AddBooleanProvider("res", resProvider)
+	spm.AddBooleanProvider("sound", soundProvider)
+	spm.AddBooleanProvider("vibration", vibrationProvider)
+
+	fmt.Println("IsResPrefix: ", spm.sp["res"].IsEnabled())
+	fmt.Println("IsEnableNotifySound:", spm.sp["sound"].IsEnabled())
+	fmt.Println("IsEnableNotifyVib:", spm.sp["vibration"].IsEnabled())
 
 }

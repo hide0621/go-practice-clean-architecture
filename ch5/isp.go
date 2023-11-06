@@ -1,30 +1,43 @@
 package ch5
 
+type BooleanProvider interface {
+	IsEnabled() bool
+}
+
 type SharedPreferenceManager struct {
-	sp map[string]interface{}
+	sp map[string]BooleanProvider
 }
 
 func NewSharedPreferenceManager() *SharedPreferenceManager {
 	return &SharedPreferenceManager{
-		sp: make(map[string]interface{}),
+		sp: make(map[string]BooleanProvider),
 	}
 }
 
-func (spm *SharedPreferenceManager) SetBoolean(key string, value interface{}) {
-	spm.sp[key] = value
+func (spm *SharedPreferenceManager) AddBooleanProvider(key string, provider BooleanProvider) {
+	spm.sp[key] = provider
 }
 
-func (spm *SharedPreferenceManager) IsResPrefix() bool {
-	val, exists := spm.sp["res"].(bool)
-	return exists && val
+type ResProvider struct {
+	value bool
 }
 
-func (spm *SharedPreferenceManager) IsEnableNotifySound() bool {
-	val, exists := spm.sp["sound"].(bool)
-	return exists && val
+func (rp ResProvider) IsEnabled() bool {
+	return rp.value
 }
 
-func (spm *SharedPreferenceManager) IsEnableNotifyVib() bool {
-	val, exists := spm.sp["vibration"].(bool)
-	return exists && val
+type SoundProvider struct {
+	value bool
+}
+
+func (sp SoundProvider) IsEnabled() bool {
+	return sp.value
+}
+
+type VibrationProvider struct {
+	value bool
+}
+
+func (vp VibrationProvider) IsEnabled() bool {
+	return vp.value
 }
