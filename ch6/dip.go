@@ -1,12 +1,27 @@
 package ch6
 
+import (
+	"database/sql"
+	// _ "github.com/mattn/go-sqlite3" // SQLite driver
+)
+
+type DBInterface interface {
+	LoadMailById(id int) Mail
+	SaveMail(mail Mail) bool
+}
+
 type SQLiteManager struct {
 	// SQLiteManagerの具体的な実装の詳細がここに含まれる
+	db *sql.DB
 }
 
 func NewSQLiteManager() *SQLiteManager {
 	// SQLiteManagerの初期化ロジック
-	return &SQLiteManager{}
+	db, err := sql.Open("sqlite3", "your-sqlite-database-path")
+	if err != nil {
+		panic(err)
+	}
+	return &SQLiteManager{db}
 }
 
 func (s *SQLiteManager) LoadMailById(id int) Mail {
@@ -40,4 +55,13 @@ func (r *RoomManager) SaveMail(mail Mail) bool {
 
 type Mail struct {
 	// Mailの構造体の詳細がここに含まれる
+}
+
+type MailHandler struct {
+	dbi DBInterface
+}
+
+func (mh MailHandler) FetchMailById(id int) Mail {
+	mail := mh.dbi.LoadMailById(id)
+	return mail
 }
