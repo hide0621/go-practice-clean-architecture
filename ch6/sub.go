@@ -7,11 +7,9 @@ func Sub1() {
 	// roomManager := NewRoomManager()
 
 	// どの具体的なデータベースマネージャを使用するかを選択
-	sqliteMail := sqliteManager.LoadMailById(123)
-	// または、以下のように別のデータベースマネージャを使用できる
-	// roomMail := roomManager.LoadMailById(123)
+	mailHandler := MailHandler{dbi: sqliteManager}
 
-	// ロードされたメールを使用または処理する
+	mail := mailHandler.FetchMailById(123)
 
-	fmt.Println(sqliteMail)
+	fmt.Println(mail)
 }
