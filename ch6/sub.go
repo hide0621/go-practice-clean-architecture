@@ -12,4 +12,5 @@ func Sub1() {
 	mail := mailHandler.FetchMailById(123)
 
 	fmt.Println(mail)
+
 }
