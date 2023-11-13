@@ -14,3 +14,14 @@ func Sub1() {
 	fmt.Println(mail)
 
 }
+
+func Sub2() {
+	rectangle := NewShape("rectangle")
+	rectangle.Width = 10
+	rectangle.Height = 5
+	fmt.Println(rectangle.Area())
+
+	circle := NewShape("circle")
+	circle.Radius = 3
+	fmt.Println(circle.Area())
+}
