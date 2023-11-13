@@ -14,6 +14,8 @@ func main() {
 
 	// ch5.Sub2()
 
-	ch6.Sub1()
+	// ch6.Sub1()
+
+	ch6.Sub2()
 
 }
