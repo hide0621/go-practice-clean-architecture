@@ -16,12 +16,17 @@ func Sub1() {
 }
 
 func Sub2() {
-	rectangle := NewShape("rectangle")
-	rectangle.Width = 10
-	rectangle.Height = 5
-	fmt.Println(rectangle.Area())
 
-	circle := NewShape("circle")
-	circle.Radius = 3
-	fmt.Println(circle.Area())
+	rectangle := Rectangle{
+		Width:  10,
+		Height: 5,
+	}
+
+	circle := Circle{
+		Radius: 3,
+	}
+
+	calculateAndPrintArea(rectangle)
+	calculateAndPrintArea(circle)
+
 }

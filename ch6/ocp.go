@@ -1,31 +1,32 @@
 package ch6
 
-import "math"
+import (
+	"fmt"
+	"math"
+)
 
-type Shape struct {
-	Type   string
+type Shape interface {
+	Area() float64
+}
+
+type Rectangle struct {
 	Width  float64
 	Height float64
+}
+
+type Circle struct {
 	Radius float64
 }
 
-func NewShape(t string) *Shape {
-	return &Shape{Type: t}
+func (r Rectangle) Area() float64 {
+	return r.Width * r.Height
 }
 
-func (s Shape) Area() float64 {
-	if s.Type == "rectangle" {
-		return s.RectangleArea()
-	} else if s.Type == "circle" {
-		return s.CircleArea()
-	}
-	return 0
+func (c Circle) Area() float64 {
+	return math.Pi * math.Pow(c.Radius, 2)
 }
 
-func (s Shape) RectangleArea() float64 {
-	return s.Width * s.Height
-}
-
-func (s Shape) CircleArea() float64 {
-	return math.Pi * math.Pow(s.Radius, 2)
+func calculateAndPrintArea(s Shape) {
+	result := s.Area()
+	fmt.Println(result)
 }
