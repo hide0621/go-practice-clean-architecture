@@ -3,7 +3,8 @@ package main
 import (
 	// "go-practice-clean-architecture/ch4"
 	// "go-practice-clean-architecture/ch5"
-	"go-practice-clean-architecture/ch6"
+	// "go-practice-clean-architecture/ch6"
+	"go-practice-clean-architecture/ch7"
 )
 
 func main() {
@@ -16,6 +17,8 @@ func main() {
 
 	// ch6.Sub1()
 
-	ch6.Sub2()
+	// ch6.Sub2()
+
+	ch7.Sub1()
 
 }
