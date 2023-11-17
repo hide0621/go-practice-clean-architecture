@@ -4,11 +4,7 @@ import "fmt"
 
 func Sub1() {
 
-	ownAddr, err := NewAddress("example@example.com")
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
+	ownAddr := NewAddress("example@example.com")
 
 	toAddrs := &[]Address{
 		{
@@ -27,4 +23,24 @@ func Sub1() {
 	}
 
 	fmt.Println(mail)
+}
+
+func Sub2() {
+
+	requestValue := RequestValue{
+		ToAddress: "recipient1@example.com",
+		MainText:  "Hello, this is the main text of the mail.",
+	}
+
+	repository := AccountRepositoryImpl{}
+
+	gateway := MailGatewayImpl{}
+
+	useCase := SendMailUseCaseImpl{
+		MailGateway:       &gateway,
+		AccountRepository: &repository,
+	}
+
+	useCase.Execute(requestValue)
+
 }

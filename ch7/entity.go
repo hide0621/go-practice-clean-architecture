@@ -6,11 +6,11 @@ type Address struct {
 	address string
 }
 
-func NewAddress(address string) (*Address, error) {
+func NewAddress(address string) *Address {
 	if !validateAddress(address) {
-		return nil, errors.New("invalid address")
+		panic(errors.New("invalid address"))
 	}
-	return &Address{address: address}, nil
+	return &Address{address: address}
 }
 
 func validateAddress(address string) bool {
