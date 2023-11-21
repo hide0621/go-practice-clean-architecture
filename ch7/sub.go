@@ -34,7 +34,9 @@ func Sub2() {
 
 	repository := AccountRepositoryImpl{}
 
-	gateway := MailGatewayImpl{}
+	apiClient := ApiClient{}
+
+	gateway := MailApiClient{ApiClient: apiClient}
 
 	useCase := SendMailUseCaseImpl{
 		MailGateway:       &gateway,
@@ -74,4 +76,34 @@ func Sub3() {
 	roomManager.LoadMail(mail.id)
 
 	roomManager.SaveMail(mail.ownAddress, mail.id, mail.toAddresses, mail.mainText)
+}
+
+func Sub4() {
+
+	mailClient := MailApiClient{}
+
+	ownAddr := NewAddress("example@example.com")
+
+	toAddrs := &[]Address{
+		{
+			address: "recipient1@example.com",
+		},
+		{
+			address: "recipient2@example.com",
+		},
+	}
+
+	mail := Mail{
+		id:          1,
+		ownAddress:  ownAddr,
+		toAddresses: toAddrs,
+		mainText:    "Hello, this is the main text of the mail.",
+	}
+
+	sendResult := <-mailClient.SendMail(mail)
+	fmt.Println("Send Mail Result:", sendResult)
+
+	newMails := <-mailClient.CheckNewMails()
+	fmt.Println("New Mails:", newMails)
+
 }

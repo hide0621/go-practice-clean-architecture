@@ -1,7 +1,5 @@
 package ch7
 
-import "fmt"
-
 type SendMailUseCase interface {
 	Execute(requestValue RequestValue) ResponseValue
 }
@@ -12,7 +10,7 @@ type RequestValue struct {
 }
 
 type ResponseValue struct {
-	Result bool
+	Result chan bool
 }
 
 type SendMailUseCaseImpl struct {
@@ -33,26 +31,12 @@ func (useCase *SendMailUseCaseImpl) Execute(requestValue RequestValue) ResponseV
 	return ResponseValue{Result: result}
 }
 
-type MailGateway interface {
-	SendMail(mail Mail) bool
-}
-
 type AccountRepository interface {
 	GetMainAccount() *Account
 }
 
 type Account struct {
 	Address *Address
-}
-
-type MailGatewayImpl struct {
-	// メールゲートウェイの具体的な実装
-}
-
-func (gateway *MailGatewayImpl) SendMail(mail Mail) bool {
-	// メールの送信ロジックの実装
-	fmt.Printf("Sending mail from %v to %v\n", mail.ownAddress, mail.toAddresses)
-	return true
 }
 
 type AccountRepositoryImpl struct {
