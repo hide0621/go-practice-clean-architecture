@@ -30,23 +30,3 @@ func (useCase *SendMailUseCaseImpl) Execute(requestValue RequestValue) ResponseV
 	})
 	return ResponseValue{Result: result}
 }
-
-type AccountRepository interface {
-	GetMainAccount() *Account
-}
-
-type Account struct {
-	Address *Address
-}
-
-type AccountRepositoryImpl struct {
-	// アカウントリポジトリの具体的な実装
-}
-
-func (repository *AccountRepositoryImpl) GetMainAccount() *Account {
-	// メインアカウントの取得ロジックの実装
-	return &Account{
-		Address: NewAddress("main@example.com"),
-		// 他のアカウント関連のプロパティ
-	}
-}

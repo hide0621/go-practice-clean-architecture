@@ -19,3 +19,23 @@ func (rm *RoomManager) LoadMail(mailID int) Mail {
 func (rm *RoomManager) SaveMail(ownAddress *Address, mailID int, toAddress *[]Address, mainText string) {
 
 }
+
+type AccountRepository interface {
+	GetMainAccount() *Account
+}
+
+type Account struct {
+	Address *Address
+}
+
+type AccountRepositoryImpl struct {
+	// アカウントリポジトリの具体的な実装
+}
+
+func (repository *AccountRepositoryImpl) GetMainAccount() *Account {
+	// メインアカウントの取得ロジックの実装
+	return &Account{
+		Address: NewAddress("main@example.com"),
+		// 他のアカウント関連のプロパティ
+	}
+}
