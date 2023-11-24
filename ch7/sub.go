@@ -107,3 +107,22 @@ func Sub4() {
 	fmt.Println("New Mails:", newMails)
 
 }
+
+func Sub5() {
+
+	fragment := &MailEditFragment{}
+
+	module := &MailEditModule{}
+
+	vm := module.ProvideVM(fragment)
+
+	presenter := &MailEditPresenterImpl{
+		VM:              vm,
+		LoadMailUseCase: &SomeLoadMailUseCase{},
+	}
+
+	// 使用例:
+	mailID := 1
+	presenter.LoadMail(mailID)
+
+}

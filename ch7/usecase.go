@@ -30,3 +30,14 @@ func (useCase *SendMailUseCaseImpl) Execute(requestValue RequestValue) ResponseV
 	})
 	return ResponseValue{Result: result}
 }
+
+type LoadMailUseCase interface {
+	Execute(mailID int) Mail
+}
+
+type SomeLoadMailUseCase struct {
+}
+
+func (useCase *SomeLoadMailUseCase) Execute(mailID int) Mail {
+	return Mail{}
+}
